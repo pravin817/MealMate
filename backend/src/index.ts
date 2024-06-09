@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import morgan from "morgan";
+import myUserRoute from "./routes/MyUserRoute";
 
 // Connect with the database
 mongoose
@@ -16,12 +18,10 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(cors());
+// app.use(morgan("dev"));
+app.use(morgan("combined"));
 
-app.get("/test", async (req: Request, res: Response) => {
-  res.json({
-    message: "Hello World",
-  });
-});
+app.use("/api/my/user", myUserRoute);
 
 // Listen
 app.listen(8080, () => {
