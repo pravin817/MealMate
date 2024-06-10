@@ -23,10 +23,12 @@ export const jwtParse = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { authorization } = req.body;
-  if (authorization || !authorization.startsWith("Bearer ")) {
+  const { authorization } = req.headers;
+
+  if (!authorization || !authorization.startsWith("Bearer ")) {
     return res.sendStatus(401);
   }
+
   const token = authorization.split(" ")[1];
 
   try {
