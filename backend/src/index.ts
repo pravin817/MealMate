@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import { v2 as cloudinary } from "cloudinary";
 import myUserRoute from "./routes/MyUserRoute";
+import myRestaurantRoute from "./routes/MyRestaurantRoute";
 
 // Connect with the database
 mongoose
@@ -30,6 +31,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/api/my/user", myUserRoute);
+app.use("/api/my/restaurant", myRestaurantRoute);
 
 const PORT = process.env.PORT || 7000;
 
